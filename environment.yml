@@ -1,0 +1,7 @@
+dependencies:
+ - python=3.6
+ - requests
+ - pip:
+   - pytest 
+   - beautifulsoup4
+   - google
