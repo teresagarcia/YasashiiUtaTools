@@ -6,4 +6,4 @@ clean:
 	rm -f data/processed/*.tsv
 
 search:
-	python src/data/search_keyword.py $(artist) $(song_name) $(SEARCH_URL)
+	python src/data/search.py $(artist) $(song_name) $(SEARCH_URL)
