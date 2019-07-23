@@ -3,5 +3,5 @@ dependencies:
  - requests
  - pip:
    - pytest 
-   - scrapy
+   - beautifulsoup4
    - google
