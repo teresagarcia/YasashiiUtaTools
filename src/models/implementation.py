@@ -11,7 +11,10 @@ default_site = "colorcodedlyrics.com" # esto vendrá de alguna función
 query = artist + " " + song_name + " " + "site:" + default_site
 
 if __name__ == '__main__':
-    result = search.get_urls(query)
-    for i in result:
+    urls = search.get_urls(query)
+    search_items = {}
+    for i in urls:
         print(i)
-        print(search.check_title(i))
+        title = search.get_title(i)
+        print(title)
+        search.check_title(title, artist, song_name)
