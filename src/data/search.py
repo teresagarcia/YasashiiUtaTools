@@ -8,17 +8,20 @@ def get_urls(query):
         urls.append(i)
     return urls
 
-def get_title(url):
+def get_html(url):
     response = requests.get(url)
     html_text = bs(response.text, 'html.parser')
-    if html_text.title is not None:
-        title = html_text.title.string
+    return html_text
+
+def get_title(html):
+    if html.title is not None:
+        title = html.title.string
     else:
         title = "Sin título"
     return title
 
 def check_title(title, artist, song_name):
+    is_target_page = False
     if artist.lower() in title.lower() and song_name.lower() in title.lower():
-        print("guardar")
-    else:
-        print("ignorar")
+        is_target_page = True
+    return is_target_page
