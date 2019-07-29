@@ -1,7 +1,12 @@
 from bs4 import BeautifulSoup as bs
 
+# Con ilyricsbuzz.com
+def get_original_lyrics(raw_html):
+    content = raw_html.find_all('div', {"class": "td-post-content"})[0]
+    return content.get_text()
+
+# Con popgasa.com
 def get_english_lyrics(raw_html):
-    table =  raw_html.find_all('article')[0]
-    div = table.find_all('div')[2]
-    pinside = div.find_all('p')
-    return pinside
+    content = raw_html.find('div', {"class": "entry-content"})
+    content.find('div', {'class': 'sharedaddy'}).decompose()
+    return content.get_text()
