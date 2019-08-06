@@ -10,7 +10,7 @@ song_data["artist"] = sys.argv[1]
 
 song_data["song_name"] = sys.argv[2]
 
-default_site = "popgasa.com" # esto vendrá de alguna función
+default_site = "ilyricsbuzz.com" # esto vendrá de alguna función
 
 query = song_data["artist"] + " " + song_data["song_name"] + " " + "site:" + default_site
 
@@ -26,6 +26,6 @@ if __name__ == '__main__':
             song_data["url"] = i
             song_data["html"] = tmp_html
             break
-    print(scraper.get_english_lyrics(song_data["html"]))
-    # print(scraper.get_original_lyrics(song_data["html"]))
+    # print(scraper.get_english_lyrics(song_data["html"]))
+    print("Esto es lo que devuelve: \n",scraper.get_original_lyrics(song_data["html"]))
             
