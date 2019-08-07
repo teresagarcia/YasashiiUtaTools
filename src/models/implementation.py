@@ -27,5 +27,6 @@ if __name__ == '__main__':
             song_data["html"] = tmp_html
             break
     # print(scraper.get_english_lyrics(song_data["html"]))
-    print("Esto es lo que devuelve: \n",scraper.get_original_lyrics(song_data["html"]))
+    # print("Esto es lo que devuelve: \n",scraper.get_original_lyrics(song_data["html"]))
+    print("Esto es lo que devuelve: \n",scraper.get_romanization(song_data["html"]))
             
