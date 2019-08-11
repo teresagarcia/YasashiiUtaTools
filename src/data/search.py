@@ -2,6 +2,7 @@ from googlesearch import search
 from bs4 import BeautifulSoup as bs
 import requests
 
+
 # Controlar error HTTP Error 429: Too Many Requests (!!)
 def get_urls(query):
     urls = []
