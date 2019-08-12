@@ -12,8 +12,6 @@ class Song(object):
         self.translation = ""
 
 
-# def new_json():
-#     data =  '{"artist": "", "song_name": "", "original_url": "", "transliteration_url": "","translation_url": "", "original": "", \
-#     "transliteration": "", "translation": ""}'
-#     songs_data = json.loads(data)
-#     return songs_data
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, 
+            sort_keys=True, indent=4)
