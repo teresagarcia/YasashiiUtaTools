@@ -8,23 +8,28 @@ import json
 
 song = Song()
 
-song.artist = sys.argv[1]
-
-song.song_name = sys.argv[2]
-
-output_file = sys.argv[3]
-
 def get_page(urls):
     for i in urls:
         tmp_html = search.get_html(i)
         title = search.get_title(tmp_html)
+        print(title)
         if search.check_title(title, song.artist, song.song_name ):
             url = i 
             html = tmp_html
-            break
+            break 
+        # ¿Y si no lo encuentra?
     return html, url
 
+def get_search_data():
+    print("Dime el artista:")
+    song.artist = input()
+    print("Y la canción:")
+    song.song_name = input()
+
 if __name__ == '__main__':
+    get_search_data()
+
+    output_file = sys.argv[1]
     queries = kpop2015.get_queries(song.artist, song.song_name)
     
     original_html, song.original_url = get_page(search.get_urls(queries["original_rom_lyrics"]))

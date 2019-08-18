@@ -9,7 +9,7 @@ clean:
 	rm -f data/processed/*.json
 
 get_lyrics:
-	python src/application/lyrics_extraction.py $(artist) $(song_name) $(BASE_JSON)
+	python src/application/lyrics_extraction.py $(BASE_JSON)
 
 process_text: 
 	python src/application/text_processing.py $(BASE_JSON)
