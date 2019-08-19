@@ -13,3 +13,6 @@ get_lyrics:
 
 process_text: 
 	python src/application/text_processing.py $(BASE_JSON) $(TRANSLATION_TXT) $(ORIGINAL_TXT)
+
+text_editor:
+	python src/application/text_editor.py $(TRANSLATION_TXT) $(ORIGINAL_TXT)
