@@ -12,4 +12,4 @@ get_lyrics:
 	python src/application/lyrics_extraction.py $(BASE_JSON)
 
 process_text: 
-	python src/application/text_processing.py $(BASE_JSON)
+	python src/application/text_processing.py $(BASE_JSON) $(TRANSLATION_TXT) $(ORIGINAL_TXT)
