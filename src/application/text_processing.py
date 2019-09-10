@@ -1,6 +1,7 @@
 import sys
 sys.path.append('src') 
 import json
+from utils.file_utils import load_dict
 import processing.text_setup as text_setup
 from data.song_info import SongInfo
 from langdetect import detect
@@ -9,12 +10,6 @@ input_file = sys.argv[1]
 translation_file = sys.argv[2]
 original_rom_file = sys.argv[3]
 info_file = sys.argv[4]
-
-def load_song_data(input_file):
-    with open(input_file) as json_file:
-        data = json.load(json_file)
-    song_data = json.loads(data)
-    return song_data
 
 def save_translation_txt(translation_file, translation):
     with open(translation_file,'w') as translation_file:
@@ -35,7 +30,7 @@ def save_song_info(song_data):
     return song_info
 
 if __name__ == '__main__':
-    song_data = load_song_data(input_file)
+    song_data = load_dict(input_file)
     save_translation_txt(translation_file, song_data['translation'])
     original_rom_text = text_setup.mix_original_transliteration(song_data['original'], song_data['transliteration'])
     save_original_txt(original_rom_file, original_rom_text)
