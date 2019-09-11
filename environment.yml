@@ -7,3 +7,4 @@ dependencies:
    - google
    - langdetect
    - PyQt5
+   - tldextract
