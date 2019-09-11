@@ -1,35 +1,67 @@
-from tkinter import *
-import tkinter.font as tkFont
+import sys
+from PyQt5.Qt import QApplication, QClipboard
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import QMainWindow, QWidget, QPlainTextEdit, QLineEdit, QLabel, QPushButton
+from PyQt5.QtCore import QSize
 
-BOARD_HEIGHT = 55
-BOARD_WIDTH = 80
-RIGHT_BOX_WIDTH = 32
+BOARD_WIDTH = 500
+BOARD_HEIGHT = 620
+UPPER_MARGIN = 5
+RIGHT_BOX_X = 1050
+RIGHT_BOX_WIDTH = 300
 
-def set_layout():
-    editor = Tk()
+class MainWindow(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
 
-    title_label = Label(editor, text="Título")
-    title_label.grid(row=0, column=0)
-    
-    title = Entry(editor, width=55, name="title")
-    title.grid(row=0, column=0, columnspan=2)
+        self.setMinimumSize(QSize(1360, 700))    
+        self.setWindowTitle("Yasashii Uta Tools") 
 
-    translation_board = Text(editor, height=BOARD_HEIGHT, width=BOARD_WIDTH, name="translation_board")
-    translation_board.grid(row=2, column=0, rowspan=5)
+        self.translation_board = QPlainTextEdit(self)
+        self.translation_board.move(10,45)
+        self.translation_board.resize(BOARD_WIDTH, BOARD_HEIGHT)
 
-    editing_board = Text(editor, height=BOARD_HEIGHT, width=BOARD_WIDTH, name="editing_board")
-    editing_board.grid(row=2, column=1, rowspan=5)
+        self.editing_board = QPlainTextEdit(self)
+        self.editing_board.move(530,45)
+        self.editing_board.resize(BOARD_WIDTH, BOARD_HEIGHT)
+        
+        self.title_label = QLabel(self)
+        self.title_label.setText("Título")
+        self.title_label.move(270, UPPER_MARGIN)
 
-    button = Button(editor, text="Enviar")
-    button.grid(row=7, column=0, columnspan=2)
+        self.title = QLineEdit(self)
+        self.title.move(310, UPPER_MARGIN)
+        self.title.resize(440,30)
 
-    tags_label = Label(editor, text="Etiquetas")
-    tags = Text(editor, height=10, width=RIGHT_BOX_WIDTH, name="tags")
-    tags_label.grid(row=2, column=2, sticky=S)
-    tags.grid(row=3, column=2, sticky=N)
+        self.video_label = QLabel(self)
+        self.video_label.setText("Código del vídeo")
+        self.video_label.move(RIGHT_BOX_X, 45)
 
-    credits_label = Label(editor, text="Créditos")
-    credits_info = Text(editor, height=20, width=RIGHT_BOX_WIDTH, name="credits")
-    credits_label.grid(row=4, column=2, sticky=S)
-    credits_info.grid(row=5, column=2, sticky=N)
-    return editor 
+        self.video_code = QPlainTextEdit(self)
+        self.video_code.move(RIGHT_BOX_X, 75)
+        self.video_code.resize(RIGHT_BOX_WIDTH, 160)
+
+        self.tags_label = QLabel(self)
+        self.tags_label.setText("Etiquetas")
+        self.tags_label.move(RIGHT_BOX_X, 240)
+        
+        self.tags = QPlainTextEdit(self)
+        self.tags.move(RIGHT_BOX_X,270)
+        self.tags.resize(RIGHT_BOX_WIDTH, 80)
+
+        self.credits_label = QLabel(self)
+        self.credits_label.setText("Créditos")
+        self.credits_label.move(RIGHT_BOX_X, 355)
+
+        self.credits = QPlainTextEdit(self)
+        self.credits.move(RIGHT_BOX_X,385)
+        self.credits.resize(RIGHT_BOX_WIDTH, 280)
+
+        self.save_button = QPushButton('Guardar', self)
+        self.save_button.setToolTip('Guarda para seguir luego')
+        self.save_button.move(820,UPPER_MARGIN)
+
+        self.send_button = QPushButton('Enviar', self)
+        self.send_button.setToolTip('Envía la entrada a Blogger')
+        self.send_button.move(930,UPPER_MARGIN)
+        
