@@ -20,7 +20,7 @@ if __name__ == '__main__':
     editor.nametowidget('translation_board').insert(END, translation)
     editor.nametowidget('editing_board').insert(END, original_rom)
     editor.nametowidget('tags').insert(END, set_tags(info['artist'], info['song_name'], info['language']))
-    editor.nametowidget('credits').insert(END, set_credits())
+    editor.nametowidget('credits').insert(END, set_credits(info['original_url'], info['transliteration_url'], info['translation_url']))
     
     editor.mainloop()  
 
