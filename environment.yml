@@ -6,5 +6,5 @@ dependencies:
    - beautifulsoup4
    - google
    - langdetect
-   - PyQt5
+   - pyqt5==5.11.2 
    - tldextract
