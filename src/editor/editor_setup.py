@@ -64,4 +64,4 @@ class MainWindow(QMainWindow):
         self.send_button = QPushButton('Enviar', self)
         self.send_button.setToolTip('Envía la entrada a Blogger')
         self.send_button.move(930,UPPER_MARGIN)
-        
+
