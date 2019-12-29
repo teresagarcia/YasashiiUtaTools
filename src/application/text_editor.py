@@ -1,5 +1,6 @@
 import sys
 sys.path.append('src') 
+from data.editor_content import EditorContent
 from PyQt5.Qt import QApplication, QClipboard
 from PyQt5 import QtCore, QtWidgets
 from editor.editor_setup import MainWindow
@@ -17,13 +18,12 @@ if __name__ == '__main__':
     translation = utils.load_txt(translation_txt)
     original_rom = utils.load_txt(original_txt)
     info = utils.load_dict(info_file)
-    language_refs = get_language_refs(info['language'])
 
-    editor.title.setText(set_title(info['artist'], info['song_name']))
-    editor.translation_board.insertPlainText(translation)
-    editor.editing_board.insertPlainText(original_rom)
-    editor.tags.insertPlainText(set_tags(info['artist'], info['song_name'], language_refs))
-    editor.credits.insertPlainText(set_credits(info['original_url'], info['transliteration_url'], info['translation_url'], language_refs))
+    editor.title.setText(info['title'])
+    editor.translation_board.insertPlainText(info['translation'])
+    editor.editing_board.insertPlainText(info['original'])
+    editor.tags.insertPlainText(info['tags'])
+    editor.credits.insertPlainText(info['credits'])
     
     editor.show()
     sys.exit( app.exec_() )
