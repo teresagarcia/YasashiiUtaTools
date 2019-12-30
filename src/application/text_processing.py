@@ -6,6 +6,7 @@ import processing.text_setup as text_setup
 from data.editor_content import EditorContent
 from editor.content_setup import set_title, set_tags, set_credits, get_language_refs
 from langdetect import detect
+import jsonpickle
 
 input_file = sys.argv[1]
 translation_file = sys.argv[2]
@@ -28,14 +29,12 @@ def save_editor_content(song_data):
     editor_content.original = text_setup.mix_original_transliteration(song_data['original'], song_data['transliteration'])
     editor_content.tags = set_tags(song_data['artist'], song_data['song_name'], language_refs)
     editor_content.credits = set_credits(song_data['original_url'], song_data['transliteration_url'], song_data['translation_url'], language_refs)
+    editor_content.video_code = ""
     return editor_content
 
 if __name__ == '__main__':
     song_data = load_dict(input_file)
-#     save_translation_txt(translation_file, song_data['translation'])
-#     original_rom_text = text_setup.mix_original_transliteration(song_data['original'], song_data['transliteration'])
-#     save_original_txt(original_rom_file, original_rom_text)
     editor_content = save_editor_content(song_data)
     with open(info_file, 'w') as outfile:
-        json.dump(editor_content.toJSON(), outfile)
+        json.dump(jsonpickle.encode(editor_content), outfile)
     print("Todo guardado")

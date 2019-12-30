@@ -10,3 +10,8 @@ def load_txt(input_file):
     with open(input_file, 'r') as txt_file:
         txt_data = txt_file.read()
     return txt_data
+
+def load_json(input_file):
+    with open(input_file) as json_file:
+        data = json.load(json_file)
+    return data

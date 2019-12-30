@@ -8,3 +8,4 @@ dependencies:
    - langdetect
    - pyqt5==5.11.2 
    - tldextract
+   - jsonpickle
