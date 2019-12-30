@@ -17,4 +17,4 @@ process_text:
 	python src/application/text_processing.py $(BASE_JSON) $(TRANSLATION_TXT) $(ORIGINAL_TXT) $(CONTENT_JSON)
 
 text_editor:
-	python src/application/text_editor.py $(TRANSLATION_TXT) $(ORIGINAL_TXT) $(CONTENT_JSON)
+	python src/application/text_editor.py $(CONTENT_JSON)

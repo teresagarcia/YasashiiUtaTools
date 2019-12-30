@@ -11,9 +11,7 @@ import json
 import jsonpickle
 from data.editor_content import EditorContent
 
-translation_txt = sys.argv[1]
-original_txt = sys.argv[2]
-info_file = sys.argv[3]
+info_file = sys.argv[1]
 
 @pyqtSlot()
 def save_changes():
