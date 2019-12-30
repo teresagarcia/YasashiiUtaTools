@@ -1,7 +1,7 @@
 import sys
 from PyQt5.Qt import QApplication, QClipboard
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QWidget, QPlainTextEdit, QLineEdit, QLabel, QPushButton
+from PyQt5.QtWidgets import QMainWindow, QWidget, QPlainTextEdit, QLineEdit, QLabel, QPushButton, QMessageBox
 from PyQt5.QtCore import QSize
 
 BOARD_WIDTH = 500
@@ -65,3 +65,7 @@ class MainWindow(QMainWindow):
         self.send_button.setToolTip('Envía la entrada a Blogger')
         self.send_button.move(930,UPPER_MARGIN)
 
+        self.save_msg = QMessageBox()
+        self.save_msg.setWindowTitle("Guardar")
+        self.save_msg.setText("Cambios guardados~")
+        self.save_msg.setIcon(QMessageBox.Information)

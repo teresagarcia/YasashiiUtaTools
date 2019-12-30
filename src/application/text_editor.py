@@ -26,7 +26,7 @@ def save_changes():
     new_content.credits = editor.credits.toPlainText()
     with open(info_file, 'w') as outfile:
         json.dump(jsonpickle.encode(new_content), outfile)
-    print("Cambios guardados")
+    editor.save_msg.exec_() 
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
