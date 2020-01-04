@@ -26,6 +26,10 @@ def save_changes():
         json.dump(jsonpickle.encode(new_content), outfile)
     editor.save_msg.exec_() 
 
+@pyqtSlot()
+def send_to_blogger():
+    print("estamos trabajando en ello...")
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     editor = MainWindow()
@@ -41,6 +45,7 @@ if __name__ == '__main__':
     editor.video_code.insertPlainText(content.video_code)
 
     editor.save_button.clicked.connect(save_changes)
+    editor.send_button.clicked.connect(send_to_blogger)
     
     editor.show()
     sys.exit( app.exec_() )

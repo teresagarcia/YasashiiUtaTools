@@ -9,3 +9,5 @@ dependencies:
    - pyqt5==5.11.2 
    - tldextract
    - jsonpickle
+   - google-api-python-client
+   - oauth2client
