@@ -21,11 +21,6 @@ def main(argv):
     post_content = jsonpickle.decode(post_json)
 
     try:
-        users = service.users()
-
-        # Retrieve this user's profile information
-        thisuser = users.get(userId='self').execute()
-
         blogs = service.blogs()
 
         # Retrieve the list of Blogs this user has write privileges on

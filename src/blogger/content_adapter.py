@@ -5,9 +5,6 @@ import jsonpickle
 import json
 from data.final_content import FinalContent
 
-editor_content = sys.argv[1]
-result_file = sys.argv[2]
-
 def get_post_labels(tags):
     return tags.split(", ")
 
@@ -23,7 +20,7 @@ def adapt_final_content(content):
     final_content.labels = get_post_labels(content.tags)
     return final_content
 
-if __name__ == '__main__':
+def get_final_content(editor_content, result_file):
     info = utils.load_json(editor_content)
     content = jsonpickle.decode(info)
     
@@ -31,3 +28,4 @@ if __name__ == '__main__':
 
     with open(result_file, 'w') as outfile:
         json.dump(jsonpickle.encode(final_content), outfile)
+

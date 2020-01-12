@@ -10,10 +10,14 @@ import utils.file_utils as utils
 import json
 import jsonpickle
 from data.editor_content import EditorContent
+from blogger.content_adapter import get_final_content
 
 info_file = sys.argv[1]
+result_file = sys.argv[2]
 
-@pyqtSlot()
+def show_save_message():
+    editor.save_msg.exec_() 
+
 def save_changes():
     new_content = EditorContent()
     new_content.title = editor.title.text()
@@ -24,10 +28,16 @@ def save_changes():
     new_content.credits = editor.credits.toPlainText()
     with open(info_file, 'w') as outfile:
         json.dump(jsonpickle.encode(new_content), outfile)
-    editor.save_msg.exec_() 
+
+@pyqtSlot()
+def save_changes_show():
+    save_changes()
+    show_save_message()
 
 @pyqtSlot()
 def send_to_blogger():
+    save_changes()
+    get_final_content(info_file, result_file)
     print("estamos trabajando en ello...")
 
 if __name__ == '__main__':
@@ -44,7 +54,7 @@ if __name__ == '__main__':
     editor.credits.insertPlainText(content.credits)
     editor.video_code.insertPlainText(content.video_code)
 
-    editor.save_button.clicked.connect(save_changes)
+    editor.save_button.clicked.connect(save_changes_show)
     editor.send_button.clicked.connect(send_to_blogger)
     
     editor.show()

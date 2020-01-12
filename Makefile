@@ -4,11 +4,11 @@ ORIGINAL_TXT = 'data/processed/original.txt'
 CONTENT_JSON = 'data/processed/editor_content.json'
 FINAL_JSON = 'data/processed/final_content.json'
 
-clean: 
-	rm -f data/raw/*.json
-	rm -f data/interim/*.json
-	rm -f data/processed/*.txt
-	rm -f data/processed/*.json
+# clean: 
+# 	rm -f data/raw/*.json
+# 	rm -f data/interim/*.json
+# 	rm -f data/processed/*.txt
+# 	rm -f data/processed/*.json
 
 get_lyrics:
 	python src/application/lyrics_extraction.py $(BASE_JSON)
@@ -17,10 +17,10 @@ process_text:
 	python src/application/text_processing.py $(BASE_JSON) $(TRANSLATION_TXT) $(ORIGINAL_TXT) $(CONTENT_JSON)
 
 text_editor:
-	python src/application/text_editor.py $(CONTENT_JSON)
+	python src/application/text_editor.py $(CONTENT_JSON) $(FINAL_JSON)
 
 blogger_test:
 	python src/blogger/blogger_test.py 
 
 adapt_content:
-	python src/blogger/content_adapter.py $(CONTENT_JSON) $(FINAL_JSON)
+	python src/blogger/content_adapter.py $(CONTENT_JSON) 
