@@ -10,7 +10,7 @@ import jsonpickle
 other_data_file = 'src/resources/other_data.json'
 post_file = 'data/processed/final_content.json'
 
-def main(argv):
+def send_draft(argv):
     # Authenticate and construct service.
     service, flags = sample_tools.init(
         argv, 'blogger', 'v3', __doc__, __file__,
@@ -43,4 +43,4 @@ def main(argv):
                'the application to re-authorize')
 
 if __name__ == '__main__':
-    main(sys.argv)
+    send_draft(sys.argv)

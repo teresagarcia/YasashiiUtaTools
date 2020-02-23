@@ -11,7 +11,7 @@ import json
 import jsonpickle
 from data.editor_content import EditorContent
 from blogger.content_adapter import get_final_content
-import blogger.send_blogger_draft as sbd
+from blogger.send_blogger_draft import send_draft
 
 info_file = sys.argv[1]
 result_file = sys.argv[2]
@@ -39,7 +39,8 @@ def save_changes_show():
 def send_to_blogger():
     save_changes()
     get_final_content(info_file, result_file)
-    sbd.main("")
+    send_draft("")
+    editor.send_draft_msg.exec_() 
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

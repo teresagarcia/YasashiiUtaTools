@@ -69,3 +69,8 @@ class MainWindow(QMainWindow):
         self.save_msg.setWindowTitle("Guardar")
         self.save_msg.setText("Cambios guardados~")
         self.save_msg.setIcon(QMessageBox.Information)
+
+        self.send_draft_msg = QMessageBox()
+        self.send_draft_msg.setWindowTitle("Enviar")
+        self.send_draft_msg.setText("Borrador enviado~")
+        self.send_draft_msg.setIcon(QMessageBox.Information)

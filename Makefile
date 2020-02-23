@@ -4,11 +4,11 @@ ORIGINAL_TXT = 'data/processed/original.txt'
 CONTENT_JSON = 'data/processed/editor_content.json'
 FINAL_JSON = 'data/processed/final_content.json'
 
-# clean: 
-# 	rm -f data/raw/*.json
-# 	rm -f data/interim/*.json
-# 	rm -f data/processed/*.txt
-# 	rm -f data/processed/*.json
+clean: 
+	rm -f data/raw/*.json
+	rm -f data/interim/*.json
+	rm -f data/processed/*.txt
+	rm -f data/processed/*.json
 
 get_lyrics:
 	python src/application/lyrics_extraction.py $(BASE_JSON)
