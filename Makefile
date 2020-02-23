@@ -19,8 +19,8 @@ process_text:
 text_editor:
 	python src/application/text_editor.py $(CONTENT_JSON) $(FINAL_JSON)
 
-blogger_test:
-	python src/blogger/blogger_test.py 
+send_draft:
+	python src/blogger/send_blogger_draft.py 
 
 adapt_content:
 	python src/blogger/content_adapter.py $(CONTENT_JSON) 
