@@ -1,10 +1,10 @@
 import sys
 sys.path.append('src') 
 from constants import constants
-import data.search as search
+import search.search as search
 from data.song import Song
-import data.lyrics_scraper as scraper
-import data.kpop_post2015 as kpop2015
+import scrapers.lyrics_scraper as scraper
+import scrapers.kpop_post2015 as kpop2015
 import json
 
 output_file = constants.BASE_INFO
