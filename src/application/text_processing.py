@@ -1,5 +1,6 @@
 import sys
 sys.path.append('src') 
+from constants import constants
 import json
 from utils.file_utils import load_dict
 import processing.text_setup as text_setup
@@ -8,10 +9,10 @@ from editor.content_setup import set_title, set_tags, set_credits, get_language_
 from langdetect import detect
 import jsonpickle
 
-input_file = sys.argv[1]
-translation_file = sys.argv[2]
-original_rom_file = sys.argv[3]
-info_file = sys.argv[4]
+input_file = constants.BASE_INFO
+translation_file = constants.TRANSLATION
+original_rom_file = constants.ORIGINAL
+content_file = constants.CONTENT
 
 def save_translation_txt(translation_file, translation):
     with open(translation_file,'w') as translation_file:
@@ -32,9 +33,12 @@ def save_editor_content(song_data):
     editor_content.video_code = ""
     return editor_content
 
-if __name__ == '__main__':
+def process_text():
     song_data = load_dict(input_file)
     editor_content = save_editor_content(song_data)
-    with open(info_file, 'w') as outfile:
+    with open(content_file, 'w') as outfile:
         json.dump(jsonpickle.encode(editor_content), outfile)
     print("Todo guardado")
+
+if __name__ == '__main__':
+    process_text()

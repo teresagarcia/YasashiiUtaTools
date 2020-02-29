@@ -1,11 +1,13 @@
 import sys
 sys.path.append('src') 
+from constants import constants
 import data.search as search
 from data.song import Song
 import data.lyrics_scraper as scraper
 import data.kpop_post2015 as kpop2015
 import json
 
+output_file = constants.BASE_INFO
 song = Song()
 
 def get_page(urls):
@@ -26,10 +28,9 @@ def set_search_data():
     print("Y la canción:")
     song.song_name = input()
 
-if __name__ == '__main__':
+def extract_lyrics():
     set_search_data()
 
-    output_file = sys.argv[1]
     queries = kpop2015.get_queries(song.artist, song.song_name)
     
     original_html, song.original_url = get_page(search.get_urls(queries["original_rom_lyrics"]))
@@ -42,3 +43,6 @@ if __name__ == '__main__':
     with open(output_file, 'w') as outfile:
         json.dump(song.toJSON(), outfile)
     print("Éxito~")
+
+if __name__ == '__main__':
+    extract_lyrics()

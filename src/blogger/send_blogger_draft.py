@@ -6,11 +6,11 @@ import utils.file_utils as utils
 from oauth2client import client
 from googleapiclient import sample_tools
 import jsonpickle
+from constants import constants
 
-other_data_file = 'src/resources/other_data.json'
-post_file = 'data/processed/final_content.json'
+other_data_file = constants.OTHER_DATA
 
-def send_draft(argv):
+def send_draft(post_file , argv="") :
     # Authenticate and construct service.
     service, flags = sample_tools.init(
         argv, 'blogger', 'v3', __doc__, __file__,
@@ -41,6 +41,3 @@ def send_draft(argv):
     except client.AccessTokenRefreshError:
         print ('The credentials have been revoked or expired, please re-run'
                'the application to re-authorize')
-
-if __name__ == '__main__':
-    send_draft(sys.argv)

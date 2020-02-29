@@ -1,5 +1,6 @@
 import sys
 sys.path.append('src') 
+from constants import constants
 from data.editor_content import EditorContent
 from PyQt5.Qt import QApplication, QClipboard
 from PyQt5 import QtCore, QtWidgets
@@ -13,8 +14,11 @@ from data.editor_content import EditorContent
 from blogger.content_adapter import get_final_content
 from blogger.send_blogger_draft import send_draft
 
-info_file = sys.argv[1]
-result_file = sys.argv[2]
+content_file = constants.CONTENT
+result_file = constants.FINAL_CONTENT
+
+app = QtWidgets.QApplication(sys.argv)
+editor = MainWindow()
 
 def show_save_message():
     editor.save_msg.exec_() 
@@ -27,7 +31,7 @@ def save_changes():
     new_content.video_code = editor.video_code.toPlainText()
     new_content.tags = editor.tags.toPlainText()
     new_content.credits = editor.credits.toPlainText()
-    with open(info_file, 'w') as outfile:
+    with open(content_file, 'w') as outfile:
         json.dump(jsonpickle.encode(new_content), outfile)
 
 @pyqtSlot()
@@ -38,15 +42,12 @@ def save_changes_show():
 @pyqtSlot()
 def send_to_blogger():
     save_changes()
-    get_final_content(info_file, result_file)
-    send_draft("")
+    get_final_content(content_file, result_file)
+    send_draft(result_file)
     editor.send_draft_msg.exec_() 
 
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    editor = MainWindow()
-
-    info = utils.load_json(info_file)
+def main():
+    info = utils.load_json(content_file)
     content = jsonpickle.decode(info)
 
     editor.title.setText(content.title)
@@ -62,3 +63,5 @@ if __name__ == '__main__':
     editor.show()
     sys.exit( app.exec_() )
 
+if __name__ == '__main__':
+    main()    

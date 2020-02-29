@@ -11,16 +11,16 @@ clean:
 	rm -f data/processed/*.json
 
 get_lyrics:
-	python src/application/lyrics_extraction.py $(BASE_JSON)
+	python src/application/lyrics_extraction.py 
 
 process_text: 
-	python src/application/text_processing.py $(BASE_JSON) $(TRANSLATION_TXT) $(ORIGINAL_TXT) $(CONTENT_JSON)
+	python src/application/text_processing.py 
 
 text_editor:
-	python src/application/text_editor.py $(CONTENT_JSON) $(FINAL_JSON)
+	python src/application/text_editor.py 
+
+adapt_content:
+	python src/blogger/content_adapter.py 
 
 send_draft:
 	python src/blogger/send_blogger_draft.py 
-
-adapt_content:
-	python src/blogger/content_adapter.py $(CONTENT_JSON) 
