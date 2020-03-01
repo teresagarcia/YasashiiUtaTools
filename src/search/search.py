@@ -3,12 +3,18 @@ from bs4 import BeautifulSoup as bs
 import requests
 import re
 
-# Controlar error HTTP Error 429: Too Many Requests (!!)
-def get_urls(query):
-    urls = []
-    for i in search(query, tld="es", num=20, stop=25, pause=2): 
-        urls.append(i)
-    return urls
+def get_urls(*queries):
+    all_urls = []
+    try:
+        for query in queries:
+            urls = []
+            for i in search(query, tld="es", num=20, stop=25, pause=2): 
+                urls.append(i)
+            all_urls.append(urls)
+        return all_urls
+    # Controlar error HTTP Error 429: Too Many Requests (!!)
+    except:
+        print("Demasiadas peticiones, intenta de nuevo dentro de un rato...")
 
 def get_html(url):
     response = requests.get(url)
