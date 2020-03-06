@@ -1,7 +1,9 @@
+import sys
+sys.path.append('src') 
 from googlesearch import search 
 from bs4 import BeautifulSoup as bs
 import requests
-import re
+from utils.text_utils import clean_text
 
 def get_urls(*queries):
     all_urls = []
@@ -28,12 +30,6 @@ def get_title(html):
         title = "Sin título"
     return title
 
-def clean_text(*text):
-    test_re = '[^A-Za-z0-9]+'
-    keywords = []
-    [keywords.append(re.sub(test_re, '', word).lower()) for word in text]
-    return keywords
-
 def isTextInTitle(page_title, song_title, artist):
     return song_title in page_title and artist in page_title
 
@@ -43,3 +39,18 @@ def check_title(title, artist, song_name):
     if isTextInTitle(title, song_name, artist):
         is_target_page = True
     return is_target_page
+
+
+def search_page(urls, artist, song_name):
+    url = ""
+    html = ""
+    for tmp_url in urls:
+            tmp_html = get_html(tmp_url) 
+            title = get_title(tmp_html) 
+            if check_title(title, artist, song_name):
+                url = tmp_url 
+                html = tmp_html
+                break 
+    if url == "":
+        raise ValueError("No se encontró la página")    
+    return url, html

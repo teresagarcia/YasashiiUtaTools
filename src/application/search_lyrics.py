@@ -1,6 +1,5 @@
 import sys
 sys.path.append('src') 
-from constants import constants
 from PyQt5.Qt import QApplication, QClipboard
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import pyqtSlot
@@ -22,6 +21,7 @@ def main():
     
     search_window.show()
     sys.exit( app.exec_() )
+
 
 if __name__ == '__main__':
     main()    
