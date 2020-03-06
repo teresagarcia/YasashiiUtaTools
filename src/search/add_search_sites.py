@@ -25,10 +25,7 @@ artists_names = {
 def get_category(artist):
     category = "kpop"
     for key in artists_names:
-        print(key)
-        print(clean_text(artist))
-        print(clean_text(artists_names[key]))
-        if clean_text(artist) in clean_text(artists_names[key]):
+        if clean_text(artist)[0] in clean_text(*artists_names[key]):
             category = key
     return category
 
