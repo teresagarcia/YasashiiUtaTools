@@ -2,25 +2,27 @@ import sys
 sys.path.append('src') 
 from utils.text_utils import clean_text
 
-artist = "Arashi"
-song_name = "Jidai"
 
 artists_source = {
     "arashi":{"original": "yarukizero.livejournal.com",
             "transliteration": "yarukizero.livejournal.com",
             "translation": "yarukizero.livejournal.com"},
-    "kpop":{"original": "melon.com",
-            "transliteration": "colorcodedlyrics.com",
+    "kpop":{"original": "melon.com/song",
             "translation": "popgasa.com"},
     "bollywood":{"original": "bollynook.com",
-            "translation": "bollynook.com"}
+            "translation": "bollynook.com"},
+    "family48":{"original": "stage48.net/studio48/",
+            "transliteration": "stage48.net/studio48/",
+            "translation": "stage48.net/studio48/"},
 }
 
 
 artists_names = {
     "arashi": ["Arashi"],
     "bollywood": ["Armaan Malik", "Arijit Singh", "Falak Shabir"],
+    "family48": ["AKB48", "SDN48"]
 }
+
 
 def get_category(artist):
     category = "kpop"
@@ -30,8 +32,10 @@ def get_category(artist):
     return category
 
 
-def mystery_fun(artist, song_name):
-    print(get_category(artist))
+def get_source_pages(artist):
+    category = get_category(artist)
+    return artists_source[category]
+
 
 if __name__ == "__main__":
-    mystery_fun(artist, song_name)
+    print(get_source_pages("beast"))

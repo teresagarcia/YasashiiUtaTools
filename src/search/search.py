@@ -9,14 +9,16 @@ def get_urls(*queries):
     all_urls = []
     try:
         for query in queries:
+            print(query)
             urls = []
-            for i in search(query, tld="es", num=20, stop=25, pause=2): 
+            for i in search(query, tld="es", num=10, stop=10, pause=2): 
+                print(1)
                 urls.append(i)
             all_urls.append(urls)
         return all_urls
     # Controlar error HTTP Error 429: Too Many Requests (!!)
     except:
-        print("Demasiadas peticiones, intenta de nuevo dentro de un rato...")
+        print("Problemas varios")
 
 def get_html(url):
     response = requests.get(url)
