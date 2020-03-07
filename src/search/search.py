@@ -9,16 +9,14 @@ def get_urls(*queries):
     all_urls = []
     try:
         for query in queries:
-            print(query)
             urls = []
-            for i in search(query, tld="es", num=10, stop=10, pause=2): 
-                print(1)
+            for i in search(query, tld="es", num=10, stop=30, pause=2): 
                 urls.append(i)
             all_urls.append(urls)
         return all_urls
     # Controlar error HTTP Error 429: Too Many Requests (!!)
     except:
-        print("Problemas varios")
+        raise ConnectionRefusedError("Problemas varios")
 
 def get_html(url):
     response = requests.get(url)
@@ -32,18 +30,19 @@ def get_title(html):
         title = "Sin título"
     return title
 
-def isTextInTitle(page_title, song_title, artist):
-    return song_title in page_title and artist in page_title
+def isTextInTitle(page_title, artist, song_name):
+    return (song_name in page_title) or (song_name in page_title and artist in page_title)
+
 
 def check_title(title, artist, song_name):
     is_target_page = False
     title, artist, song_name = clean_text(title, artist, song_name)
-    if isTextInTitle(title, song_name, artist):
+    if isTextInTitle(title, artist, song_name):
         is_target_page = True
     return is_target_page
 
 
-def search_page(urls, artist, song_name):
+def search_page(artist, song_name, urls):
     url = ""
     html = ""
     for tmp_url in urls:
