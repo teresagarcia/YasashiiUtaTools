@@ -4,6 +4,7 @@ from googlesearch import search
 from bs4 import BeautifulSoup as bs
 import requests
 from utils.text_utils import clean_text
+from urllib.error import HTTPError
 
 def get_urls(*queries):
     all_urls = []
@@ -14,9 +15,9 @@ def get_urls(*queries):
                 urls.append(i)
             all_urls.append(urls)
         return all_urls
-    # Controlar error HTTP Error 429: Too Many Requests (!!)
-    except:
-        raise ConnectionRefusedError("Problemas varios")
+    except HTTPError as e:
+         if e.code == 429:
+             raise ConnectionRefusedError("Demasiadas peticiones")
 
 def get_html(url):
     response = requests.get(url)

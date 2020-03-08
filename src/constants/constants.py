@@ -1,3 +1,4 @@
+RAW_INFO = 'data/raw/song_raw.json'
 BASE_INFO = 'data/interim/song_data.json'
 TRANSLATION = 'data/processed/translation.txt'
 ORIGINAL = 'data/processed/original.txt'
