@@ -5,7 +5,7 @@ from data.editor_content import EditorContent
 from PyQt5.Qt import QApplication, QClipboard
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import pyqtSlot
-from editor.editor_setup import MainWindow
+from gui.editor import MainWindow
 from editor.content_setup import set_title, set_tags, set_credits, get_language_refs
 import utils.file_utils as utils
 import json

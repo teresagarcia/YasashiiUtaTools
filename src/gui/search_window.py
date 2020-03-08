@@ -40,3 +40,8 @@ class SearchWindow(QMainWindow):
         self.search_msg.setWindowTitle("Buscar")
         self.search_msg.setText("Búsqueda en marcha")
         self.search_msg.setIcon(QMessageBox.Information)
+
+        self.finish_msg = QMessageBox()
+        self.finish_msg.setWindowTitle("Fin")
+        self.finish_msg.setText("Acabó la búsqueda")
+        self.finish_msg.setIcon(QMessageBox.Information)
